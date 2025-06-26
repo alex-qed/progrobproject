@@ -77,7 +77,6 @@ python src/main.py
 
 * Python 3.9+
 * Веб-камера 720p (30 FPS)
-* CPU уровня Intel i5 (без GPU-ускорения)
 
 ---
 
