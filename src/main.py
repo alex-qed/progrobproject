@@ -10,8 +10,8 @@ import argparse, threading, time
 from pathlib import Path
 import mujoco as mj
 from mujoco.viewer import launch_passive
-from src.sim import Spot
-from src.gesture import run_gesture_loop
+from sim import Spot
+from gesture import run_gesture_loop
 
 def mujoco_worker(cfg, shared):
     model = mj.MjModel.from_xml_path(str(cfg.xml))
