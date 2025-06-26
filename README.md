@@ -39,12 +39,12 @@
 ## Установка и запуск
 
 ```bash
-git clone https://github.com/you/gesture-ptd.git
-cd gesture-ptd
+git clone https://github.com/qed/progrobproject.git
+cd progrobproject
 python -m venv venv
-source venv/bin/activate     # Windows: venv\Scripts\activate
+source venv/bin/activate    
 pip install -r requirements.txt
-python src/gesture_ptd.py
+python src/main.py
 ```
 
 *Для выхода из программы нажмите `q` в окне с видео.*
