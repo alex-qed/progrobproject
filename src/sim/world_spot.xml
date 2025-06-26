@@ -1,0 +1,48 @@
+<!-- world_spot.xml – spotlight only, no actor -->
+<mujoco model="world">
+
+  <asset>
+    <material name="mat_floor" rgba="0.6 0.6 0.6 1"/>
+    <material name="mat_spot"  rgba="1   0   0   1"/>
+  </asset>
+
+  <visual><map znear="0.01"/></visual>
+
+  <worldbody>
+
+    <camera name="main_cam" pos="0 -15 12" euler="25 0 0"/>
+    <geom   type="plane"   pos="0 0 0" size="14 14 0.1" material="mat_floor"/>
+
+    <!-- ───── Robotic spotlight (unchanged geometry) ───── -->
+    <body name="fixture_base" pos="0 -5 10" euler="180 0 0">
+      <geom name="base" type="box" size="0.10575 0.0755 0.05" material="mat_spot"/>
+
+      <joint name="pan" type="hinge" axis="0 0 1" range="-270 270"
+             limited="true" frictionloss="0.8" damping="0.8"/>
+
+      <body name="fixture_head" pos="0 0 0.10" euler="180 0 0">
+        <inertial pos="0 0 0" mass="21" diaginertia="0.03 0.03 0.02"/>
+        <joint name="tilt" type="hinge" axis="0 1 0" range="-135 135"
+               limited="true" frictionloss="0.8" damping="0.8"/>
+
+        <geom name="head_geom" type="box"
+              pos="0 0 0" size="0.08 0.08 0.10" density="80" material="mat_spot"/>
+
+        <!-- Beam capsule: radius will be changed from Python -->
+        <geom name="spot_beam" type="capsule"
+              fromto="0 0 0   0 0 -10"
+              size="0.01"         
+              rgba="1 1 0 0.3"
+              contype="0" conaffinity="0"/>
+
+        <site name="head_site" type="sphere" pos="0 0 0" size="0.01" rgba="0 1 0 1"/>
+      </body>
+    </body>
+
+  </worldbody>
+
+  <actuator>
+    <motor name="pan"  joint="pan"  gear="8"/>
+    <motor name="tilt" joint="tilt" gear="8"/>
+  </actuator>
+</mujoco>
